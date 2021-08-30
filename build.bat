@@ -4,7 +4,8 @@ gcc   -m32 -c -I src\. src\kernel.c -o kernel.o
 cd bin
 gcc  -m32 -c -I ..\src\. ..\src\Drivers\*.c 
 gcc  -m32 -c -I ..\src\. ..\src\System\*.c 
-gcc  -m32 -c -I ..\src\. ..\src\Graphics\*.c 
+gcc  -m32 -c -I ..\src\. ..\src\Graphics\*.c
+gcc  -m32 -c -I ..\src\. ..\src\Timer\*.c 
 gcc  -m32 -c -I ..\src\. ..\src\FS\*.c 
 gcc  -m32 -c -I ..\src\. ..\src\Shell\*.c 
 gcc  -m32 -c -I ..\src\. ..\src\Mego-Runtime\*.c 
