@@ -155,6 +155,7 @@ void system(char * command){
     printW("ascii\n");
     printW("time\n");
     printW("calc\n");
+    printW("view\n");
   }
   else if(equalS(command,"calc",4)){
     calc_init();
