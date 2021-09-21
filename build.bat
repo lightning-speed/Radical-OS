@@ -4,7 +4,6 @@ nasm -f elf32 src\kernel_loader.asm -o kernel_loader.o
 gcc   -m32 -c -I src\. src\kernel.c -o kernel.o
 cd bin
 gcc  -m32 -c -I ..\src\. ..\src\Drivers\*.c 
-nasm -f elf32 ..\src\Drivers\interrupt.asm -o .\inter.o
 gcc  -m32 -c -I ..\src\. ..\src\System\*.c 
 gcc  -m32 -c -I ..\src\. ..\src\Graphics\*.c
 gcc  -m32 -c -I ..\src\. ..\src\Timer\*.c 
