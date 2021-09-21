@@ -2,7 +2,7 @@ echo Cleaning
 mkdir -p bin
 rm -r -f bin/*.o
 echo Building
-nasm -f elf32 src/kernel_loader.asm -o kernel_loader.o
+nasm -f elf32 src/kernel_loader2.asm -o kernel_loader.o
 gcc -m32 -c -I src/. src/kernel.c -o kernel.o
 cd bin
 gcc -m32 -fno-exceptions -ffreestanding -fshort-wchar -mno-red-zone -c -I ../src/. ../src/Drivers/*.c 
