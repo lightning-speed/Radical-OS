@@ -5,8 +5,6 @@
 #include<Drivers/Keyboard.h>
 #include<Terminal-Runtime/Terminal-Runtime.h>
 #include<FS/fs.h>
-#include<Drivers/isr.h>
-#include<Drivers/idt.h>
 #include<System/MemoryManager.h>
 void ImageViewr_pre();
 void memory_init();
@@ -34,7 +32,6 @@ void shell_main(){
 }
 void start_shell(){
   ImageViewr_pre();
-  isr_install();
   char * temp = 0x0;
   for(int i =0;i<1000000;i++){
     if(temp[i]=='w'&&temp[i+1]=='e'&&temp[i+2]=='0'){

@@ -5,7 +5,7 @@
 #include<FS/fs.h>
 #include<Shell/shell.h>
 void printLogo();
-int kmain(){ 
+extern int kmain(){ 
   screen_init();
   clearScreen();
   time_init();
