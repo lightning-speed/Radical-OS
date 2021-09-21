@@ -1,3 +1,3 @@
-extern _kmain
+extern kmain
 cli
-call _kmain
+call kmain

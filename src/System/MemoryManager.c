@@ -1,4 +1,4 @@
-#include"Memory.h"
+#include"MemoryManager.h"
 int last_index = 0xFFFFAA;
 char * new_str(int len){
  int out = last_index;

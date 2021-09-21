@@ -1,5 +1,5 @@
 #include "string.h"
-#include<string.h>
+//#include<string.h>
 int length(string abc){
   for(int i = 0;;i++)
   if(abc[i]=='\0')return i;
