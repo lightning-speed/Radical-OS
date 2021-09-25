@@ -1,5 +1,5 @@
 # Radical
-Radical OS is a Terminal Interface Operating System With the follwing features:<br>
+Radical OS is a Terminal Interface Operating System With the following features:<br>
 1.Virtual File System<br>
 2.Mex Runtime<br>
 3.Graphics Lib<br>
