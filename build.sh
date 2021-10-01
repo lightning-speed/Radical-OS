@@ -9,7 +9,7 @@ main(){
   local directories=(
     "Drivers"
     "System"
-    "Graphic"
+    "Graphics"
     "Timer"
     "FS"
     "App32"
@@ -28,9 +28,12 @@ main(){
   for directory in "${directories[@]}"; do
     gcc -m32 -fno-exceptions -ffreestanding -fshort-wchar -mno-red-zone -c -I "../src/." "../src/${directory}/"*.c
   done
+  #cp ../kernel* ../build/
+  #cp ./*.o ../build/
+  ld ../kernel_loader.o ../kernel.o  *.o  -o kernel.e
   rm -rf -- "../"*.o || die "Could not remove object files"
   rm -rf -- *.o || die "Could not remove object files"
-  objcopy -Felf32-i386 "kernel.e kernel.elf"
+  objcopy -Felf32-i386 kernel.e kernel.elf
   rm -rf -- *.e || die "Could not remove object files"
   qemu-system-x86_64 -kernel "kernel.elf"
   cd .. || die "Could not cd to previous directory"

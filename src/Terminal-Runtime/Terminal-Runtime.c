@@ -241,7 +241,7 @@ void system(char *command)
   }
   else if (equalS(command, "help", 4))
   {
-    printW("\nRadical Kernel Version 2.0.0");
+    printW("\nRadical Kernel Version 3.2.0");
     printW("\nKernel Build: 1721");
     printW("\nCommands are:-\n");
     printW("cls\n");

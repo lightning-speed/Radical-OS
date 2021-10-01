@@ -8,8 +8,36 @@
 #include <Graphics/Graphics.h>
 #include <System/MemoryManager.h>
 char *fileText;
-int run_file(char *fileName)
+int *vars;
+void run();
+void execute(char *command);
+int run_gemo_file(char *fileName)
 {
+ vars = (int *)malloc(30);
  fileText = malloc(4096);
  set((int *)fileText, (int *)readFile(fileName));
+ run();
+}
+void run()
+{
+ int temp = 0;
+ char *command = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+ for (int i = 0; i < 60; i++)
+ {
+  if (fileText[i] == '\n')
+  {
+   execute(command);
+   temp = 0;
+   command[0] = 0;
+  }
+  else
+  {
+   command[temp] = fileText[i];
+   command[temp + 1] = 0;
+   temp++;
+  }
+ }
+}
+void execute(char *commandIN)
+{
 }
