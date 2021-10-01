@@ -18,7 +18,7 @@ void shell_main()
     Screen->vga[i] = 0x1f;
   }
   setScreenColor(0x0f);
-  printW("Radical OS [Version 2.0.0]\n");
+  printW("Radical OS [Version 3.2.0]\n");
   printW("Copyright (c) 2021 Radical Foundation.  All rights reserved.\n\n");
   printW("Welcome to Radical OS. Hope you have fun :)\n\n");
   printW("Setting up Memory Manager...    ");
