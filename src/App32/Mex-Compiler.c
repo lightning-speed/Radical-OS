@@ -7,7 +7,7 @@ char *process(char *in);
 #include <FS/fs.h>
 void compile(char *text)
 {
-  char *command = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+  char *command = malloc(20);
   char *total = malloc(4096);
   int temp = 0;
   for (int i = 0; i < 4096; i++)

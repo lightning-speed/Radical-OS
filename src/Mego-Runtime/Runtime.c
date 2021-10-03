@@ -26,8 +26,7 @@ void setMemory(int *mem)
 }
 void setCpuPointer(int in)
 {
-  in -= 2;
-  cpu_pointer = in * 2;
+  cpu_pointer = (in * 2) - 3;
 }
 void execute_program(int *program)
 {

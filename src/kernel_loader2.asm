@@ -5,6 +5,7 @@ bits 32
   dd - 0x1BADB002
 
 extern kmain
+_start:
   cli
   call kmain
   jmp $
