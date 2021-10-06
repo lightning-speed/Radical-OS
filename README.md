@@ -1,6 +1,7 @@
 # Radical
 Discord link: https://discord.gg/TMKxZxfbAg
-![image](https://user-images.githubusercontent.com/82322282/134778611-f0d8ef0f-bf99-46b4-81c9-34ae46c19345.png)
+
+![photo](https://user-images.githubusercontent.com/82322282/136238407-0d4bb41a-ea70-451f-9bea-d4e41604d7e0.png)
 
 Radical OS is a Terminal Interface Operating System With the following features:<br>
 1.Virtual File System<br>
