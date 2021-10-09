@@ -26,8 +26,16 @@ void calc_init(){
   else  if(ae=='/'){
     printC(ae);
 
-    printW("\nOutput: ");
-    printW(toString(fn/sn));
+    if (sn == 0)
+    {
+      printW("\nCan not divide by zero!\n");
+    }
+    else
+    {
+      printW("\nOutput: ");
+      printW(toString(fn/sn));
+    }
+    
     runningC = 0;
   }
   else  if(ae=='*'){
