@@ -6,7 +6,6 @@
 #include <Shell/shell.h>
 #include <System/BinaryRuntime.h>
 #include <Util/string.h>
-#include <Drivers/gdt.h>
 void printLogo();
 void Sleep(int in);
 int kmain()
