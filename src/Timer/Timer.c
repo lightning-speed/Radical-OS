@@ -1,6 +1,7 @@
 #include "Timer.h"
 #include <System/SystemTime.h>
 #include <Drivers/idt.h>
+#include <System/IO.h>
 double TimeSinceBoot = 0;
 const long long BaseFrequency = 1193182;
 

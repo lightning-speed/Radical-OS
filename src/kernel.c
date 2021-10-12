@@ -9,6 +9,7 @@
 #include <Drivers/gdt.h>
 #include <Drivers/idt.h>
 #include <Timer/Timer.h>
+#include <System/IO.h>
 void printLogo();
 // constants
 
@@ -35,7 +36,6 @@ int kmain()
   init_pic();
   idt_set_gate(33, keyboard_handler, 0x8E);
   idt_set_gate(32, timer_handler, 0x8E);
-  
   asm("sti");
   Screen->cursorY = 5;
   printCenter(5, "OOOOOO ", 0x0e);
