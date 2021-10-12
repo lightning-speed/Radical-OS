@@ -8,8 +8,8 @@
 #include <Util/string.h>
 #include <Drivers/gdt.h>
 #include <Drivers/idt.h>
+#include <Timer/Timer.h>
 void printLogo();
-void Sleep(int in);
 // constants
 
 void init_pic(void)
@@ -34,8 +34,8 @@ int kmain()
   idt_install();
   init_pic();
   idt_set_gate(33, keyboard_handler, 0x8E);
-  outportb(0x21, 0xfd);
-  outportb(0xa1, 0xff);
+  idt_set_gate(32, timer_handler, 0x8E);
+  
   asm("sti");
   Screen->cursorY = 5;
   printCenter(5, "OOOOOO ", 0x0e);
@@ -60,13 +60,13 @@ int kmain()
   printCenter(16, " Radical OS", 0x0f);
   setCursorPosition(-1, -1);
   printCenter(14, " .         ", 0x0f);
-  Sleep(1);
+  Sleep(1000);
   printCenter(14, " .  .      ", 0x0f);
-  Sleep(1);
+  Sleep(1000);
   printCenter(14, " .  .  .   ", 0x0f);
-  Sleep(1);
+  Sleep(1000);
   printCenter(14, " .  .  .  .", 0x0f);
-  Sleep(1);
+  Sleep(1000);
   clearScreen();
   shell_main();
   for (;;)
