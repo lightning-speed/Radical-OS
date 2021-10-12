@@ -18,3 +18,7 @@ void run_binary()
                :
                : "r"(binary_mem));
 }
+void set_binary_location(int to)
+{
+  binary_mem = (char *)to;
+}

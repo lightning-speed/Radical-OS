@@ -6,7 +6,7 @@ struct sc
   int defaultColor;
   char *vga;
 };
-static struct sc *Screen;
+static struct sc *Screen = (struct sc *)0xAA;
 void screen_init();
 void clearScreen();
 void printChar(char ch, int color);

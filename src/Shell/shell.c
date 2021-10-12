@@ -38,10 +38,10 @@ void shell_main()
 void start_shell()
 {
   ImageViewr_pre();
-  char *temp = (char *)detectRamdiskLocation();
+  char *temp = (char *)0x0 + detectRamdiskLocation();
   load_binary(temp, detectRamdiskLength());
   run_binary();
-  printW("Building Some MEX Files");
+  printW("\nBuilding Some MEX Files");
   runSh("build.sh");
   printC('\n');
   while (1)
