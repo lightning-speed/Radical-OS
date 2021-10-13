@@ -4,7 +4,7 @@
 #include <Util/string.h>
 #include <Drivers/Keyboard.h>
 #include <Terminal-Runtime/Terminal-Runtime.h>
-#include <FS/fs.h>
+#include <FS/vfs.h>
 #include <System/MemoryManager.h>
 #include <Drivers/ramdisk.h>
 #include <System/BinaryRuntime.h>
@@ -21,28 +21,14 @@ void shell_main()
     Screen->vga[i] = 0x1f;
   }
   setScreenColor(0x0f);
-  printW("Radical OS [Version 3.2.0]\n");
-  printW("Copyright (c) 2021 Radical Foundation.  All rights reserved.\n\n");
-  printW("Welcome to Radical OS. Hope you have fun :)\n\n");
-  printW("Setting up Memory Manager...    ");
   memory_init();
-  print("[ done ]\n\n", 0x0a);
-  printW("Setting up VFS...               ");
-  fs_init();
-  print("[ done ]\n\n", 0x0a);
-  printW("Time from boot: ");
-  printW(toString(getTimeFromBoot()));
-  printC('\n');
+  init_fs();
   start_shell();
 }
 void start_shell()
 {
   ImageViewr_pre();
-  char *temp = (char *)0x0 + detectRamdiskLocation();
-  load_binary(temp, detectRamdiskLength());
-  run_binary();
   printW("\nBuilding Some MEX Files");
-  runSh("build.sh");
   printC('\n');
   while (1)
   {
