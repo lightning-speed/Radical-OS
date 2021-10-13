@@ -90,7 +90,7 @@ int get_file_size_at(int at)
  return files_length[at];
 }
 
-int get_file_szie(char *name)
+int get_file_size(char *name)
 {
  for (int i = 0; i < f_index; i++)
  {
@@ -113,4 +113,16 @@ void rename_file(char *name, char *to)
 char *get_file_name_at(int at)
 {
  return file_names[at];
+}
+int does_file_exists(char *name)
+{
+ for (int i = 0; i < f_index; i++)
+ {
+  if (equal(file_names[i], name))
+  {
+   return 1;
+  }
+
+  return 0;
+ }
 }
