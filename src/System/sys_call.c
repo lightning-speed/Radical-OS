@@ -13,10 +13,10 @@ void setup_call_handler()
 void sys_call()
 {
  char *temp = (char *)0x0;
- int type = (int)temp[82];
- int arg1 = (int)temp[83];
- int arg2 = (int)temp[84];
- int arg3 = (int)temp[85];
+ char type = (int)temp[82];
+ char arg1 = (int)temp[83];
+ char arg2 = (int)temp[84];
+ char arg3 = (int)temp[85];
  system_handle(type, arg1, arg2, arg3);
 }
 void call_handler(void)
