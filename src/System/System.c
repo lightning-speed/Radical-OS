@@ -11,3 +11,11 @@ void restart()
 void shutdown()
 {
 }
+void system_handle(int type, int arg1, int arg2, int arg3)
+{
+     if (type == 1)
+          if (arg2 == 0)
+               printC(arg1);
+          else
+               printChar(arg1, arg2);
+}
