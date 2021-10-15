@@ -9,9 +9,6 @@ i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\System\*.c
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Graphics\*.c
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Timer\*.c 
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\FS\*.c 
-i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\App32\*.c 
-i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Mego-Runtime\*.c 
-i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Terminal-Runtime\*.c 
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Util\*.c 
 ld ..\kernel_loader.o ..\kernel.o  *.o ..\ramdisk\ramdisk.img  -o kernel.e
 del ..\*.o

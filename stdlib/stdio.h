@@ -1,3 +1,5 @@
+#pragma once
+#include <util_string.h>
 char *mem = (char *)0x0;
 void setAll(char type, char arg1, char arg2, char arg3);
 void printChar(char in)
@@ -34,9 +36,9 @@ void setAll(char type, char arg1, char arg2, char arg3)
  mem[84] = arg2;
  mem[85] = arg3;
 }
-void printS(char *str)
+void printS(char str[])
 {
- for (int i = 0; str[i] != 0; i++)
+ for (int i = 0; i < length(str); i++)
  {
   setAll(1, str[i], 0, 0);
   asm("int $110");

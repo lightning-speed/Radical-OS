@@ -1,9 +1,7 @@
-asm("jmp _pmain");
-void pmain(){
- char * temp = (char *)0x0;
- temp[82]= 1;
- temp[83]='H';
- temp[84]=0x1f;
- asm("int $110");
- for(;;){}
+#include <stdio.h>
+#include <util_string.h>
+void start_program(char **args, int offset)
+{
+ changeColor(0x01);
+ printS("\nStarted Shell!" - offset);
 }
