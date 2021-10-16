@@ -3,7 +3,7 @@
 #include <System/IO.h>
 #include <Graphics/Graphics.h>
 #include <Drivers/Keyboard.h>
-#include <util/string.h>
+#include <Util/string.h>
 #include <System/SystemTime.h>
 const int io_adrress = 0xA00000;
 void restart()
