@@ -1,7 +1,7 @@
 #include "ramdisk.h"
 #include <FS/vfs.h>
 #include <System/MemoryManager.h>
-#include <util/string.h>
+#include <Util/string.h>
 long long ramdisk_location = 0;
 int r_length = 0;
 char *ramdisk = (char *)0X0;
