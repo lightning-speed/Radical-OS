@@ -3,8 +3,11 @@
 #include <System/IO.h>
 #include <Graphics/Graphics.h>
 #include <Drivers/Keyboard.h>
-#include <Util/string.h>
+#include <util/string.h>
+#include <FS/vfs.h>
 #include <System/SystemTime.h>
+#include <System/BinaryRuntime.h>
+#include <System/MemoryManager.h>
 const int io_adrress = 0xA00000;
 void restart()
 {
@@ -16,13 +19,30 @@ void restart()
 void shutdown()
 {
 }
+int run_file_c(char *line)
+{
+     char *args[10];
+     split_to_args(args, line, ' ', 10);
+     if (does_file_exists(args[0]))
+     {
+          set_args(args, 10);
+          roll_back(10 * 100);
+          run_binary_file(args[0]);
+          return 1;
+     }
+     return 0;
+}
 void system(char *line)
 {
+     if (line[0] == 0 || line[0] == '\b')
+     {
+          return;
+     }
      if (equalS(line, "cls", 3))
      {
           clearScreen();
      }
-     else if (equalS(line, "echo", 5))
+     else if (equalS(line, "echo", 4))
      {
           printC('\n');
           printW(substring(line, 5, length(line)));
@@ -35,6 +55,20 @@ void system(char *line)
           printW(toString(getMinutes()));
           printC(':');
           printW(toString(getSeconds()));
+     }
+     else if (equalS("ls", line, 2))
+     {
+          for (int i = 0; i < f_index; i++)
+          {
+               printC('\n');
+               printW(get_file_name_at(i));
+               printW("    ");
+               printW(toString(get_file_size_at(i)));
+               printW(" Bytes");
+          }
+     }
+     else if (run_file_c(line) == 1)
+     {
      }
      else
      {

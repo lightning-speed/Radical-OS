@@ -1,7 +1,12 @@
 #include "BinaryRuntime.h"
 #include <FS/vfs.h>
+#include <System/MemoryManager.h>
 const int bm = 0xAAAAAF;
 char *binary_mem = (char *)0xAAAAAA;
+void binary_runtime_init()
+{
+  binary_mem = (char *)malloc(100000);
+}
 void load_binary(char *binary, int till)
 {
   for (int i = 0; i < till; i++)
@@ -28,14 +33,14 @@ void set_binary_location(int to)
 void run_binary_file(char *fileName)
 {
   int *temp = (int *)0x0;
-  temp[5] = binary_mem;
+  temp[5] = (int)binary_mem;
   clear_binary_mem(get_file_size(fileName));
   load_binary(read_file(fileName), get_file_size(fileName));
   run_binary(get_file_size(fileName));
 }
 void set_args(char *args[], int length)
 {
-  char *temp = (char *)0xAAA;
+  char *temp = (char *)0xAAAA;
   for (int i = 0; i < length; i++)
   {
     for (int j = 0; j < 100; j++)

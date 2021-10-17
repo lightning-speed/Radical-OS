@@ -13,3 +13,4 @@ char *substring(char *str, int a, int b);
 void mk_equal(char *out, char *in);
 void set(int *out, int *to);
 string array_to_string(char array[], int length);
+void split_to_args(char *args[], char *line, char regex, int array_length);

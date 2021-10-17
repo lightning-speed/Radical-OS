@@ -93,7 +93,6 @@ void start_everything()
   create_files_from_ramdisk();
   print("  [ Done ]\n", 0x0E);
   setup_call_handler();
-  char *ap[3] = {"Hello", "Abc", "aRT"};
-  set_args((char **)ap, 3);
+  binary_runtime_init();
   run_binary_file("shell.bin");
 }

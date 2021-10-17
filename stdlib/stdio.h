@@ -1,5 +1,6 @@
 #pragma once
 #include <util_string.h>
+const int io_adrress = 0xA00000;
 char *mem = (char *)0x0;
 void setAll(char type, char arg1, char arg2, char arg3);
 void printChar(char in)
@@ -40,34 +41,41 @@ void printS(char str[])
 {
  for (int i = 0; i < length(str); i++)
  {
-  setAll(1, str[i], 0, 0);
-  asm("int $110");
+		setAll(1, str[i], 0, 0);
+		asm("int $110");
  }
 }
-char *input()
+void scanS(char out[])
 {
  char tp = 0;
- char *out = "";
  int index = 0;
  while ((tp = readChar()) != '\n')
  {
-  out[index] = tp;
-  out[index + 1] = 0;
-  if (out[index] == '\b')
-  {
-   if (index > 0)
-   {
-    out[index] = 0;
-    out[index - 1] = 0;
-    printChar('\b');
-    index -= 1;
-   }
-  }
-  else
-  {
-   printChar(tp);
-   index++;
-  }
+		out[index] = tp;
+		out[index + 1] = 0;
+		if (out[index] == '\b')
+		{
+			if (index > 0)
+			{
+				out[index] = 0;
+				out[index - 1] = 0;
+				printChar('\b');
+				index -= 1;
+			}
+		}
+		else
+		{
+			printChar(tp);
+			index++;
+		}
  }
- return out;
+}
+void write_io(char *in)
+{
+ char *memr = (char *)io_adrress;
+ for (int i = 0; in[i] != 0; i++)
+ {
+		memr[i] = in[i];
+		memr[i + 1] = 0;
+ }
 }

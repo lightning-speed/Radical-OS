@@ -10,4 +10,5 @@ int get_file_size(char *name);
 void rename_file(char *from, char *to);
 char *get_file_name_at(int at);
 void *write_file(char *name, char *content, int content_length);
+int does_file_exists(char *name);
 int f_index;

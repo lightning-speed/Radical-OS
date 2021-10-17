@@ -6,7 +6,7 @@ void start_program(char **args, int offset)
  changeColor(0x0f);
  printS("\nStarted Shell!\n" - offset);
  changeColor(0x0e);
- char in[2000];
+ char in[1000];
  for (;;)
  {
 		printS("\nuser@radical:~$ " - offset);
@@ -14,7 +14,7 @@ void start_program(char **args, int offset)
 		scanS(in);
 		system(in);
 		changeColor(0x0e);
-		for (int i = 0; i < 2000; i++)
+		for (int i = 0; i < 1000; i++)
 		{
 			in[i] = 0;
 		}

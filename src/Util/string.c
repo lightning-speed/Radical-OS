@@ -127,3 +127,24 @@ string array_to_string(char array[], int length)
     }
     return out;
 }
+void split_to_args(char *args[], char *line, char regex, int array_length)
+{
+    for (int i = 0; i < array_length; i++)
+        args[i] = (char *)malloc(100);
+    int ci = 0;
+    int ai = 0;
+    for (int i = 0; line[i] != 0; i++)
+    {
+        if (line[i] == regex)
+        {
+            ci = 0;
+            ai++;
+        }
+        else
+        {
+            args[ai][ci] = line[i];
+            args[ai][ci + 1] = 0;
+            ci++;
+        }
+    }
+}
