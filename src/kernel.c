@@ -94,5 +94,7 @@ void start_everything()
   print("  [ Done ]\n", 0x0E);
   setup_call_handler();
   binary_runtime_init();
+  delete_file("8");
+  create_file("art.sh", "echo this is a sh file that is been runned from other binary runtime program\n", 100);
   run_binary_file("shell.bin");
 }

@@ -8,7 +8,11 @@
 #include <System/SystemTime.h>
 #include <System/BinaryRuntime.h>
 #include <System/MemoryManager.h>
-const int io_adrress = 0xA00000;
+const int io_address = 0xA00000;
+int get_address();
+void pass_address(int in);
+const int passing_address = 81;
+
 void restart()
 {
      uint8 good = 0x02;
@@ -19,19 +23,20 @@ void restart()
 void shutdown()
 {
 }
-int run_file_c(char *line)
+int run_file_bin(char *line)
 {
      char *args[10];
      split_to_args(args, line, ' ', 10);
-     if (does_file_exists(args[0]))
+     if (does_file_exists(args[0]) && equal(get_file_type_of(args[0]), "bin"))
      {
           set_args(args, 10);
-          roll_back(10 * 100);
+          roll_back(10 * 100); //I doubt about this
           run_binary_file(args[0]);
           return 1;
      }
      return 0;
 }
+
 void system(char *line)
 {
      if (line[0] == 0 || line[0] == '\b')
@@ -62,12 +67,15 @@ void system(char *line)
           {
                printC('\n');
                printW(get_file_name_at(i));
-               printW("    ");
+               for (int j = 0; j < 40 - length(get_file_name_at(i)); j++)
+               {
+                    printC(' ');
+               }
                printW(toString(get_file_size_at(i)));
                printW(" Bytes");
           }
      }
-     else if (run_file_c(line) == 1)
+     else if (run_file_bin(line) == 1)
      {
      }
      else
@@ -102,6 +110,21 @@ void system_handle(char type, char arg1, char arg2, char arg3)
           mem[83] = Screen->cursorX;
      if (type == 5)
      {
-          system((char *)io_adrress);
+          system((char *)io_address);
      }
+     if (type == 10)
+     {
+
+          pass_address((int)read_file((char *)get_address()));
+     }
+}
+void pass_address(int in)
+{
+     int *memt = (int *)0x0;
+     memt[passing_address] = in;
+}
+int get_address()
+{
+     int *memt = (int *)0x0;
+     return memt[passing_address];
 }

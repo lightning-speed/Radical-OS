@@ -2,6 +2,7 @@
 #include <util_string.h>
 const int io_adrress = 0xA00000;
 char *mem = (char *)0x0;
+const int passing_address = 81;
 void setAll(char type, char arg1, char arg2, char arg3);
 void printChar(char in)
 {
@@ -78,4 +79,14 @@ void write_io(char *in)
 		memr[i] = in[i];
 		memr[i + 1] = 0;
  }
+}
+void pass_address(int in)
+{
+ int *memt = (int *)0x0;
+ memt[passing_address] = in;
+}
+int get_address()
+{
+ int *memt = (int *)0x0;
+ return memt[passing_address];
 }
