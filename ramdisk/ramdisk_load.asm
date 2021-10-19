@@ -1,1 +1,0 @@
-incbin "ramdisk_total"
