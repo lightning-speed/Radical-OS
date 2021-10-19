@@ -4,15 +4,12 @@
 #include <file.h>
 void start_program(char **args, int offset)
 {
- changeColor(0x0f);
- printS("\nStarted Shell!\n" - offset);
- changeColor(0x0e);
- char in[2000];
-
- char *fn = read_file("art" - offset);
- printS(fn);
- for (;;)
- {
+	changeColor(0x0f);
+	printS("\nStarted Shell!\n" - offset);
+	changeColor(0x0e);
+	char in[2000];
+	for (;;)
+	{
 		printS("\nuser@radical:~$ " - offset);
 		changeColor(0x0f);
 		scanS(in);
@@ -26,5 +23,5 @@ void start_program(char **args, int offset)
 		{
 			in[i] = 0;
 		}
- }
+	}
 }

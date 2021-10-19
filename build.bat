@@ -10,7 +10,7 @@ i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Graphics\*.c
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Timer\*.c 
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\FS\*.c 
 i686-elf-gcc  -std=gnu99 -m32 -c -I ..\src\. ..\src\Util\*.c 
-ld ..\kernel_loader.o ..\kernel.o  *.o ..\ramdisk\ramdisk.img  -o kernel.e
+ld ..\kernel_loader.o ..\kernel.o ..\ramdisk\ramdisk.img *.o  -o kernel.e
 del ..\*.o
 del *.o
 objcopy -Felf32-i386 kernel.e core.elf
