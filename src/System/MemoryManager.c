@@ -1,8 +1,7 @@
 #include "MemoryManager.h"
-int last_index = 0xFFFFAA;
+int last_index = 0xFFFFFAA;
 void removeCache()
 {
-  roll_back((getMemPointer() - 0xFFFFAA) - (4096 * 30));
 }
 char *malloc(int len)
 {

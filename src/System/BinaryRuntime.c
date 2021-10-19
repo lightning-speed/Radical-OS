@@ -5,7 +5,6 @@ const int bm = 0xAAAAAF;
 char *binary_mem = (char *)0xAAAAAA;
 void binary_runtime_init()
 {
-  binary_mem = (char *)malloc(100000);
 }
 void load_binary(char *binary, int till)
 {
@@ -25,6 +24,7 @@ void run_binary(int len)
   asm volatile("call *%0"
                :
                : "r"((binary_mem - len)));
+  binary_mem -= len;
 }
 void set_binary_location(int to)
 {

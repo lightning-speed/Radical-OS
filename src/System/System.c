@@ -11,7 +11,6 @@
 const int io_address = 0xA00000;
 int get_address();
 void pass_address(int in);
-const int passing_address = 81;
 
 void restart()
 {
@@ -43,6 +42,7 @@ void system(char *line)
      {
           return;
      }
+
      if (equalS(line, "cls", 3))
      {
           clearScreen();
@@ -50,7 +50,10 @@ void system(char *line)
      else if (equalS(line, "echo", 4))
      {
           printC('\n');
-          printW(substring(line, 5, length(line)));
+          for (int i = 5; line[i] != 0; i++)
+          {
+               printC(line[i]);
+          }
      }
      else if (equalS("time", line, 4))
      {
@@ -88,6 +91,15 @@ void system(char *line)
           line[i] = 0;
      }
 }
+void write_io(char *in)
+{
+     char *memr = (char *)io_address;
+     for (int i = 0; in[i] != 0; i++)
+     {
+          memr[i] = in[i];
+          memr[i + 1] = 0;
+     }
+}
 void system_handle(char type, char arg1, char arg2, char arg3)
 {
      char *mem = (char *)0x0;
@@ -114,17 +126,17 @@ void system_handle(char type, char arg1, char arg2, char arg3)
      }
      if (type == 10)
      {
-
-          pass_address((int)read_file((char *)get_address()));
+          char *fc = (char *)read_file((char *)io_address);
+          int fl = (int)get_file_size((char *)io_address);
+          char *memr = (char *)io_address;
+          for (int i = 0; i < fl; i++)
+          {
+               memr[i] = fc[i];
+          }
      }
-}
-void pass_address(int in)
-{
-     int *memt = (int *)0x0;
-     memt[passing_address] = in;
-}
-int get_address()
-{
-     int *memt = (int *)0x0;
-     return memt[passing_address];
+     if (type == 11)
+     {
+          char *memr = (char *)io_address;
+          memr[0] = does_file_exists(memr);
+     }
 }

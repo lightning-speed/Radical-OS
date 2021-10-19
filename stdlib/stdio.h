@@ -42,8 +42,8 @@ void printS(char str[])
 {
  for (int i = 0; i < length(str); i++)
  {
-		setAll(1, str[i], 0, 0);
-		asm("int $110");
+  setAll(1, str[i], 0, 0);
+  asm("int $110");
  }
 }
 void scanS(char out[])
@@ -52,23 +52,23 @@ void scanS(char out[])
  int index = 0;
  while ((tp = readChar()) != '\n')
  {
-		out[index] = tp;
-		out[index + 1] = 0;
-		if (out[index] == '\b')
-		{
-			if (index > 0)
-			{
-				out[index] = 0;
-				out[index - 1] = 0;
-				printChar('\b');
-				index -= 1;
-			}
-		}
-		else
-		{
-			printChar(tp);
-			index++;
-		}
+  out[index] = tp;
+  out[index + 1] = 0;
+  if (out[index] == '\b')
+  {
+   if (index > 0)
+   {
+    out[index] = 0;
+    out[index - 1] = 0;
+    printChar('\b');
+    index -= 1;
+   }
+  }
+  else
+  {
+   printChar(tp);
+   index++;
+  }
  }
 }
 void write_io(char *in)
@@ -76,17 +76,7 @@ void write_io(char *in)
  char *memr = (char *)io_adrress;
  for (int i = 0; in[i] != 0; i++)
  {
-		memr[i] = in[i];
-		memr[i + 1] = 0;
+  memr[i] = in[i];
+  memr[i + 1] = 0;
  }
-}
-void pass_address(int in)
-{
- int *memt = (int *)0x0;
- memt[passing_address] = in;
-}
-int get_address()
-{
- int *memt = (int *)0x0;
- return memt[passing_address];
 }
