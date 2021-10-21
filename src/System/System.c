@@ -139,4 +139,12 @@ void system_handle(char type, char arg1, char arg2, char arg3)
           char *memr = (char *)io_address;
           memr[0] = does_file_exists(memr);
      }
+     if (type == 12)
+     {
+          int fis = get_file_size((char *)io_address);
+          char *memr = (char *)io_address;
+          memr[0] = 100;
+          memr[1] = fis / 100;
+          memr[2] = fis % 100;
+     }
 }

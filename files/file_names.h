@@ -1,0 +1,1 @@
+char * names[3] = {"shell.bin","sh.bin","sh.bin"};

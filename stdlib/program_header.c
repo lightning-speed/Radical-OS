@@ -11,5 +11,6 @@ int start()
   int *temp = (int *)0x0;
   int offset = 0xAAAAAF;
   offset -= temp[5];
+  asm("sti");
   start_program(args, offset);
 }

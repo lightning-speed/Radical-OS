@@ -1,1 +1,1 @@
-char *fileNames[2] = {"shell.bin", "run.bin"};
+char *fileNames[2] = {"shell.bin", "sh.bin"};

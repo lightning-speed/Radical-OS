@@ -60,7 +60,28 @@ char getChar()
 }
 void keyboard_handler(void)
 {
+
    __asm__("pusha"); // save registers
+   if (inportb(0x60) < 0x60)
+   {
+      int run = 1;
+      char out = 0;
+      char code = inportb(0x60);
+
+      if (code == 0x2A && !isShift)
+         isShift = 1;
+      else if (code == 0x2A && isShift)
+         isShift = 0;
+      if (!isShift)
+         out = keycode[code];
+      else if (isShift)
+         out = keycode2[code];
+      if (code > 0x60)
+         out = 0;
+      inportb(0x64);
+      char *mems = (char *)0x0;
+      mems[81] = out;
+   }
    outportb(MASTER_PIC_CMD_PORT, END_OF_INTERRUPT);
    outportb(SLAVE_PIC_CMD_PORT, END_OF_INTERRUPT);
    __asm__("popa");  // restore registers

@@ -93,6 +93,7 @@ void start_everything()
   print("  [ Done ]\n", 0x0E);
   setup_call_handler();
   binary_runtime_init();
-  create_file("test.sh", "echo this is a sh file that is been runned from other binary runtime program\n", 100);
+  create_file("test.sh", "echo Hello, world!\necho shell.bin\n", 100);
   run_binary_file("shell.bin");
+  printW("\nNo more execution left. System Halted!");
 }

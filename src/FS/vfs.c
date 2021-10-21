@@ -2,11 +2,12 @@
 #include <Util/string.h>
 #include <System/MemoryManager.h>
 #include <Drivers/ramdisk.h>
+#include <../files/file_names.h>
 int files_adress[100] = {0};
 int files_length[100] = {0};
 int address_index = 0;
 int f_index = 0;
-char *file_names[100] = {""};
+char *file_names[100];
 char *fs;
 void init_fs()
 {
@@ -142,25 +143,17 @@ char *get_file_type_of(char *fn)
 void create_file_from_ramdisk()
 {
  char *mem = (char *)0x0 + ramdisk_start;
- long long temp = 0;
- long long last = 0;
+ int temp = 0;
+ int last = 0;
+ int pe = 0;
  for (long long i = 0; i < ramdisk_end - ramdisk_start; i++)
  {
   if (mem[i] == '@' && mem[i + 1] == '>' && mem[i + 2] == '<')
   {
-   int dif = 0;
-   for (int j = 0; j < 32; j++)
-   {
-    if (mem[last + j] == '!')
-    {
-     mem[last + j] = 0;
-     dif = j + 1;
-     break;
-    }
-   }
-   create_file((char *)mem + last, (char *)mem + last + dif, temp - dif);
+   create_file(names[pe], (char *)mem + last, temp);
    last = temp + 3;
    temp = 0;
+   pe++;
   }
   else
    temp++;
