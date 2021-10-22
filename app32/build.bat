@@ -4,5 +4,6 @@ cd ../
 cd Run
 call make.bat
 cd ../
-copy Shell\shell.bin+..\ramdisk\file_divider+Run\run.bin+..\ramdisk\file_divider ..\files\apps
+copy Shell\shell.bin+Run\run.bin ..\files\apps
 pause
+s

@@ -1,1 +1,1 @@
-char * names[3] = {"shell.bin","sh.bin","sh.bin"};
+char *names[5] = {"shell.bin", "sh.bin", "limine-license"};

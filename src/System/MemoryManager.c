@@ -1,5 +1,5 @@
 #include "MemoryManager.h"
-int last_index = 0xFFFFFAA;
+int last_index;
 void removeCache()
 {
 }

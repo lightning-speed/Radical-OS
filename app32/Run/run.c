@@ -14,7 +14,7 @@ void start_program(char **args, int offset)
  int ti = 0;
  for (int i = 0; file_content[i] != 0; i++)
  {
-		if (file_content[i] == '\n')
+		if (file_content[i] == '\n'||ti==299)
 		{
 			system(temp);
 			ti = 0;

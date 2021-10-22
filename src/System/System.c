@@ -64,6 +64,19 @@ void system(char *line)
           printC(':');
           printW(toString(getSeconds()));
      }
+     else if (equalS("read", line, 4))
+     {
+          printC('\n');
+          if (does_file_exists(substring(line, 5, length(line))))
+          {
+               char *text = read_file(substring(line, 5, length(line)));
+               int len = get_file_size(substring(line, 5, length(line)));
+               for (int i = 0; i < len; i++)
+               {
+                    printC(text[i]);
+               }
+          }
+     }
      else if (equalS("ls", line, 2))
      {
           for (int i = 0; i < f_index; i++)
