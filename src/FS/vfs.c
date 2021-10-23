@@ -2,7 +2,7 @@
 #include <Util/string.h>
 #include <System/MemoryManager.h>
 #include <Drivers/ramdisk.h>
-#include <../files/file_names.h>
+#include <../files/fs.h>
 long long files_adress[100] = {0};
 int files_length[100] = {0};
 int address_index = 0;
@@ -142,7 +142,10 @@ char *get_file_type_of(char *fn)
 }
 void create_file_from_ramdisk()
 {
-  create_file(names[0],ramdisk_start,17765);
-  create_file(names[1],ramdisk_start+17765,17765);
-  create_file(names[2],ramdisk_start+17765+17765,1291);
+  int ta = 0;
+  for (int i = 0; i < total_files; i++)
+  {
+    create_file(names[i], (char *)0x0 + (ramdisk_start + ta), file_lengths[i]);
+    ta += file_lengths[i];
+  }
 }
