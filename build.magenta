@@ -1,0 +1,29 @@
+main:
+ set CC i686-elf-gcc
+ set LD ld
+ set qemu qemu-system-x86_64
+ set flags -std=gnu99 -m32 -c -I ..\src\.
+ set AC nasm
+ jump build
+ end
+
+build:
+ cd bin
+ exec (AC) -felf32 ..\src\kernel_loader.asm -o kernel_loader.o 
+ exec (AC) -felf32 ..\src\Drivers\gdt.asm -o gdt_t.o 
+ exec (CC) (flags) ..\src\*.c
+ exec (CC) (flags) ..\src\Drivers\*.c
+ exec (CC) (flags) ..\src\System\*.c
+ exec (CC) (flags) ..\src\Timer\*.c
+ exec (CC) (flags) ..\src\Graphics\*.c
+ exec (CC) (flags) ..\src\Mego-Runtime\*.c
+ exec (CC) (flags) ..\src\Util\*.c
+ exec (CC) (flags) ..\src\FS\*.c
+ exec (LD) *.o ..\ramdisk\ramdisk.img -e _start -o kernel.pe
+ exec objcopy -Felf32-i386 kernel.pe kernel.elf
+ jump run
+ end
+
+run:
+ exec (qemu) -kernel kernel.elf
+ end
