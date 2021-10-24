@@ -4,6 +4,9 @@ cd ../
 cd Run
 call make.bat
 cd ../
-copy Shell\shell.bin+Run\run.bin ..\files\apps
+cd Editor
+call make.bat
+cd ../
+copy Shell\shell.bin+Run\run.bin+Editor\editor.bin ..\files\apps
 pause
 s
