@@ -13,7 +13,14 @@ void strcopy(char to[], char from[])
       to[i] = from[i];
    }
 }
+void copy(char to[], char from[], int till)
 
+{
+   for (int i = 0; i < till; i++)
+   {
+      to[i] = from[i];
+   }
+}
 char *toString(int val)
 {
    if (val == 0)

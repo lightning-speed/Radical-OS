@@ -11,7 +11,7 @@ char *file_names[100];
 char *fs;
 void init_fs()
 {
-  fs = malloc(56000);
+  fs = malloc(100000);
   for (int i = 0; i < 100; i++)
   {
     file_names[i] = malloc(32);
@@ -32,7 +32,7 @@ void create_file(char *name, char *content, int content_length)
 }
 char *read_file_at(int index)
 {
-  char *temp = (char *)files_adress[index];
+  char *temp = (char *)0x0 + files_adress[index];
   return temp;
 }
 char *read_file(char *name)

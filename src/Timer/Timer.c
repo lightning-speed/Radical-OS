@@ -2,6 +2,7 @@
 #include <System/SystemTime.h>
 #include <Drivers/idt.h>
 #include <System/IO.h>
+#include <System/System.h>
 double TimeSinceBoot = 0;
 const long long BaseFrequency = 1193182;
 
@@ -23,6 +24,8 @@ double div(double a, double b)
 }
 void Sleep(long long milliseconds)
 {
+  if (milliseconds == 0)
+    milliseconds = 1;
   Sleepd((double)div(milliseconds, 1000));
 }
 
@@ -45,7 +48,6 @@ void SetFrequency(long long frequency)
 {
   SetDivisor(div(BaseFrequency, frequency));
 }
-
 void Tick()
 {
   TimeSinceBoot += div(1, GetFrequency());
@@ -59,4 +61,9 @@ void timer_handler()
   __asm__("popa");  // restore registers
   __asm__("leave"); // restore stack
   __asm__("iret");  // interrupt return - important
+}
+
+double get_time_since_boot()
+{
+  return TimeSinceBoot;
 }

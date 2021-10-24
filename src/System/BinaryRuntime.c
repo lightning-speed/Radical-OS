@@ -1,10 +1,11 @@
 #include "BinaryRuntime.h"
 #include <FS/vfs.h>
 #include <System/MemoryManager.h>
-const int bm = 0xAAAAAF;
+int bm;
 char *binary_mem = (char *)0xAAAAAA;
 void binary_runtime_init()
 {
+  bm = (int)binary_mem;
 }
 void load_binary(char *binary, int till)
 {
@@ -18,13 +19,12 @@ void clear_binary_mem(int till)
   for (int i = 0; i < till; i++)
     binary_mem[i] = 0;
 }
-void run_binary(int len)
+void run_binary(int loc_minus)
 {
-  binary_mem += len;
   asm volatile("call *%0"
                :
-               : "r"((binary_mem - len)));
-  binary_mem -= len;
+               : "r"(binary_mem - loc_minus));
+  binary_mem -= loc_minus;
 }
 void set_binary_location(int to)
 {
@@ -36,11 +36,12 @@ void run_binary_file(char *fileName)
   temp[5] = (int)binary_mem;
   clear_binary_mem(get_file_size(fileName));
   load_binary(read_file(fileName), get_file_size(fileName));
+  binary_mem += get_file_size(fileName);
   run_binary(get_file_size(fileName));
 }
 void set_args(char *args[], int length)
 {
-  char *temp = (char *)0xFFFFF;
+  char *temp = (char *)0xFFFF;
   for (int i = 0; i < length; i++)
   {
     for (int j = 0; j < 100; j++)

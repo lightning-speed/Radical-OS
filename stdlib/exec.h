@@ -3,6 +3,6 @@
 void system(char *command)
 {
                                                write_io(command);
-                                               setAll(5, 0, 0, 0);
+                                               setAll(6, 0, 0, 0);
                                                asm("int $110");
 }

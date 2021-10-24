@@ -8,3 +8,4 @@ long long GetFrequency();
 void SetFrequency(long long frequency);
 void Tick();
 void timer_handler();
+double get_time_since_boot();

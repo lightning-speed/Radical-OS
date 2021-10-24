@@ -2,7 +2,7 @@ asm("jmp _start");
 void start_program(char **args, int offset);
 int start()
 {
-  char *arguments = (char *)0xFFFFF;
+  char *arguments = (char *)0xFFFF;
   char *args[10];
   for (int i = 0; i < 10; i++)
   {
