@@ -2,15 +2,17 @@ main:
  set CC i686-elf-gcc
  set LD ld
  set qemu qemu-system-x86_64
- set flags -std=gnu99 -m32 -c -I ..\src\.
+ set flags -std=gnu99 -m32 -ffreestanding -c -I ..\src\.
+ set aflags -felf32
  set AC nasm
  jump build
  end
 
 build:
+ mkdir bin
  cd bin
- exec (AC) -felf32 ..\src\kernel_loader.asm -o kernel_loader.o 
- exec (AC) -felf32 ..\src\Drivers\gdt.asm -o gdt_t.o 
+ exec (AC) (aflags) ..\src\kernel_loader.asm -o kernel_loader.o
+ exec (AC) (aflags) ..\src\Drivers\gdt.asm -o gdt_t.o
  exec (CC) (flags) ..\src\*.c
  exec (CC) (flags) ..\src\Drivers\*.c
  exec (CC) (flags) ..\src\System\*.c
@@ -22,8 +24,16 @@ build:
  exec (LD) *.o ..\ramdisk\ramdisk.img -e _start -o kernel.pe
  exec objcopy -Felf32-i386 kernel.pe kernel.elf
  jump run
+ pause
  end
 
 run:
  exec (qemu) -kernel kernel.elf
+ end
+
+build_fs:
+ cd app32
+ exec build.bat
+ cd ..\
+ exec ramdisk.bat
  end

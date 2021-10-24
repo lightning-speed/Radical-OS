@@ -1,1 +1,1 @@
-java -jar tools\magenta.jar build.magenta
+magenta build.magenta
