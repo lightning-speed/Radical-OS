@@ -82,3 +82,9 @@ void load_screen_state()
 		((char *)0xB8000)[i] = sc[i];
 	}
 }
+void set_cursor_position(int xe, int ye)
+{
+	Screen->cursorX = xe;
+	Screen->cursorY = ye;
+	print_t(" ", 0xff, 1);
+}

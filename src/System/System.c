@@ -181,6 +181,10 @@ void system_handle(char type, char arg1, char arg2, char arg3)
 		int len = ((int *)0x0)[0];
 		write_file(name, text, len);
 	}
+	else if (type == 14)
+	{
+		create_file((char *)io_address, "", 0);
+	}
 	//Get time from_boot
 	else if (type == 20)
 	{

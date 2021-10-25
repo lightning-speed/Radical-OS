@@ -61,3 +61,9 @@ void write_file(char *name, char *text, int till)
 	setAll(13, 0, 0, 0);
 	asm("int $110");
 }
+void create_file(char *name)
+{
+	write_io(name);
+	setAll(14, 0, 0, 0);
+	asm("int $110");
+}
