@@ -24,17 +24,26 @@ void drawText()
 	Screen->cursorY = 1;
 	Screen->cursorX = 0;
 	print_t(text, 0x0f, text_index + 1);
+	set_cursor_position(Screen->cursorX, Screen->cursorY);
 }
 void start_program(char **args, int offset)
 {
+	if (args[1][0] == ' ' || args[1][0] == 0)
+	{
+		printS("\nWrite A Proper File Name" - offset);
+		return;
+	}
 	save_screen_state();
 	of = offset;
 	g_init();
 	clearScreen();
 	drawTB();
 	text = malloc(1024 * 500);
-	read_f(text, args[1], get_file_size_of(args[1]));
-	text_index = get_file_size_of(args[1]) - 1;
+	if (does_file_exists(args[1]))
+	{
+		read_f(text, args[1], get_file_size_of(args[1]));
+		text_index = get_file_size_of(args[1]) - 1;
+	}
 	drawText();
 	char in;
 	while ((in = readChar()) != '\t')
@@ -44,14 +53,20 @@ void start_program(char **args, int offset)
 			text_index++;
 			text[text_index] = in;
 		}
-		else
+		else if (text_index > -1)
 		{
 			text[text_index] = 0;
 			text_index--;
 		}
 		drawText();
 	}
-	write_file(args[1], text, text_index + 1);
+	if (does_file_exists(args[1]))
+		write_file(args[1], text, text_index + 1);
+	else
+	{
+		create_file(args[1]);
+		write_file(args[1], text, text_index + 1);
+	}
 	clearScreen();
 	load_screen_state();
 }
