@@ -99,7 +99,14 @@ void system(char *line)
 			printW(" Bytes");
 		}
 	}
+	else if (equalS("copy", line, 4))
+	{
+		char *out[30];
+		split_to_args(out, line, ' ', length(line));
+		create_file(out[2], read_file(out[1]), get_file_size(out[1]));
+	}
 	else if (run_file_bin(line) == 1)
+
 	{
 	}
 	else
