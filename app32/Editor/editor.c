@@ -15,7 +15,7 @@ void drawTB()
 		set_char_at(i, 24, ' ', 0x1f);
 	}
 	printAt(34, 0, "Text Editor " - of, 0x1f);
-	printAt(32, 24, "Press TAB to exit " - of, 0x1f);
+	printAt(27, 24, "Press TAB to save and exit " - of, 0x1f);
 }
 void drawText()
 {
@@ -38,7 +38,7 @@ void start_program(char **args, int offset)
 	g_init();
 	clearScreen();
 	drawTB();
-	text = malloc(1024 * 500);
+	text = malloc(1024 * 1024);
 	if (does_file_exists(args[1]))
 	{
 		read_f(text, args[1], get_file_size_of(args[1]));
