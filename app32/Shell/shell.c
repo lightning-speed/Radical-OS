@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <exec.h>
 #include <util_string.h>
+#include <graphics.h>
 void start_program(char **args, int offset)
 {
 	changeColor(0x0f);
