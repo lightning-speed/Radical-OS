@@ -78,6 +78,13 @@ void system(char *line)
 			}
 		}
 	}
+	else if (equalS("del", line, 3))
+	{
+		if (does_file_exists(substring(line, 4, length(line))))
+			delete_file(substring(line, 4, length(line)));
+		else
+			printW("\nFile doesn't exists");
+	}
 	else if (equalS("ls", line, 2))
 	{
 		for (int i = 0; i < f_index; i++)
