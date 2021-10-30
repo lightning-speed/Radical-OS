@@ -41,7 +41,7 @@ void start_program(char **args, int offset)
 	text = malloc(1024 * 1024);
 	if (does_file_exists(args[1]))
 	{
-		read_f(text, args[1], get_file_size_of(args[1]));
+		read_file(text, args[1], get_file_size_of(args[1]));
 		text_index = get_file_size_of(args[1]) - 1;
 	}
 	drawText();

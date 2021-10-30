@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <exec.h>
 #include <util_string.h>
-#include <graphics.h>
 void start_program(char **args, int offset)
 {
 	changeColor(0x0f);
@@ -10,7 +9,7 @@ void start_program(char **args, int offset)
 	char in[2000];
 	for (;;)
 	{
-		printS("\nuser@radical:~$ " - offset);
+		printS("\nuser@radical:# " - offset);
 		changeColor(0x0f);
 		scanS(in);
 		if (equal(in, "exit" - offset))
