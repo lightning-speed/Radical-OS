@@ -6,8 +6,10 @@ const int passing_address = 81;
 void setAll(char type, char arg1, char arg2, char arg3);
 void printChar(char in)
 {
-	setAll(1, in, 0, 0);
+	setAll(40, 0, 0, 0);
 	asm("int $110");
+	void (*func)(char) = (void *)((int *)0x0)[1];
+	func(in);
 }
 char readChar()
 {
@@ -44,8 +46,10 @@ void printS(char str[])
 {
 	for (int i = 0; i < length(str); i++)
 	{
-		setAll(1, str[i], 0, 0);
+		setAll(40, 0, 0, 0);
 		asm("int $110");
+		void (*func)(char) = (void *)((int *)0x0)[1];
+		func(str[i]);
 	}
 }
 void scanS(char out[])

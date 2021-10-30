@@ -13,19 +13,17 @@
 #include <Drivers/ramdisk.h>
 #include <System/sys_call.h>
 #include <Timer/Scheduler.h>
-// constants
 void sys_call(void);
-
 void init_pic(void)
-{ /* Initialization of ICW1 */
+{
 	outportb(0x20, 0x11);
-	outportb(0xA0, 0x11);													/* Initialization of ICW2 */
-	outportb(0x21, 0x20);													/* start vector = 32 */
-	outportb(0xA1, 0x70); /* start vector = 96 */ /* Initialization of ICW3 */
+	outportb(0xA0, 0x11);
+	outportb(0x21, 0x20);
+	outportb(0xA1, 0x70);
 	outportb(0x21, 0x04);
-	outportb(0xA1, 0x02); /* Initialization of ICW4 */
+	outportb(0xA1, 0x02);
 	outportb(0x21, 0x01);
-	outportb(0xA1, 0x01); /* mask interrupts */
+	outportb(0xA1, 0x01);
 	outportb(0x21, 0x0);
 	outportb(0xA1, 0x0);
 }
@@ -80,7 +78,13 @@ int kmain()
 }
 void start_everything()
 {
-	print("Radical OS [ Version 3.6.0 ]\nCopyright (C) 2021 Radical Foundation\n\n", 0x0f);
+	print("--------------------------------------------------------", 0x0e);
+	print("\n|                 Welcome to Radical OS                |", 0x0e);
+	print("\n--------------------------------------------------------", 0x0e);
+	print("\n\nKernel: ", 0x0a);
+	print("radical kernel\n", 0x0b);
+	print("Version: ", 0x0a);
+	print("3.6.0\n\n", 0x05);
 	print("Setting Up Memory Manager...", 0x0f);
 	memory_init();
 	print("  [ Done ]\n", 0x0A);

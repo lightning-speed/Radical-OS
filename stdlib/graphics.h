@@ -1,5 +1,5 @@
-#include "memory.h"
 #pragma once
+#include "memory.h"
 struct sc
 {
 	int cursorX;
@@ -12,6 +12,7 @@ void g_init()
 {
 	Screen->cursorX = 0;
 	Screen->cursorY = 0;
+	Screen->vga = (char *)0xB8000;
 }
 void clearScreen()
 {

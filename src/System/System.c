@@ -10,6 +10,7 @@
 #include <Timer/Timer.h>
 #include <System/MemoryManager.h>
 const int io_address = 0xA00000;
+void system(char *line);
 int get_address();
 void pass_address(int in);
 
@@ -32,6 +33,38 @@ int run_file_bin(char *line)
 		set_args(args, 10);
 		roll_back(10 * 100); //I doubt about this
 		run_binary_file(args[0]);
+		return 1;
+	}
+	return 0;
+}
+void run_sh(char *content)
+{
+	char *temp = malloc(400);
+	int pointer = 0;
+	for (int i = 0; i < length(content); i++)
+	{
+		if (content[i] == '\n')
+		{
+			system(temp);
+			pointer = 0;
+		}
+		else
+		{
+			temp[pointer] = content[i];
+			temp[pointer + 1] = 0;
+			pointer++;
+		}
+	}
+	roll_back(400);
+}
+int run_file_sh(char *line)
+{
+	char *args[10];
+	split_to_args(args, line, ' ', 10);
+	if (does_file_exists(args[0]) && equal(get_file_type_of(args[0]), "sh"))
+	{
+		run_sh(read_file(args[0]));
+		roll_back(10 * 100);
 		return 1;
 	}
 	return 0;
@@ -105,8 +138,10 @@ void system(char *line)
 		split_to_args(out, line, ' ', length(line));
 		create_file(out[2], read_file(out[1]), get_file_size(out[1]));
 	}
+	else if (run_file_sh(line) == 1)
+	{
+	}
 	else if (run_file_bin(line) == 1)
-
 	{
 	}
 	else
@@ -209,5 +244,12 @@ void system_handle(char type, char arg1, char arg2, char arg3)
 	{
 		int *mem = (int *)0x0;
 		mem[0] = (int)malloc(mem[0]);
+	}
+	else if (type == 40)
+	{
+		int *mem = (int *)0x0;
+		mem[1] = (int)printC;
+		mem[2] = (int)read_file;
+		mem[3] = (int)get_file_size;
 	}
 }

@@ -1,17 +1,14 @@
-#pragma once
 #include "stdio.h"
+#pragma once
 void read_file(char out[], char name[], int length)
 {
-	setAll(10, 0, 0, 0);
-	char *memu = (char *)io_adrress;
-	for (int i = 0; i < name[i] != 0; i++)
-	{
-		memu[i] = name[i];
-		memu[i + 1] = 0;
-	}
+	setAll(40, 0, 0, 0);
 	asm("int $110");
+	char *(*func)(char *) = (void *)((int *)0x0)[2];
 	for (int i = 0; i < length; i++)
-		out[i] = ((char *)io_adrress)[i];
+	{
+		out[i] = func(name)[i];
+	}
 }
 int does_file_exists(char name[])
 {
@@ -27,11 +24,11 @@ int does_file_exists(char name[])
 }
 int get_file_size_of(char name[])
 {
-	setAll(12, 0, 0, 0);
-	char *memu = (char *)io_adrress;
-	write_io(name);
+	setAll(40, 0, 0, 0);
 	asm("int $110");
-	return (memu[0] * memu[1]) + memu[2];
+	int (*func)(char *) = (void *)((int *)0x0)[3];
+	int out = func(name);
+	return out;
 }
 void read_f(char *out, char name[], int length)
 {

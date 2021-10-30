@@ -27,10 +27,6 @@ void memory_init()
 {
 	last_index = 0xFFFFFF;
 	char *tempr = (char *)last_index;
-	for (int i = 0; i < 100000; i++)
-	{
-		tempr[i] = 0;
-	}
 }
 void roll_back(int to)
 {
