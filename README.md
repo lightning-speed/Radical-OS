@@ -5,7 +5,9 @@ Discord link: https://discord.gg/TMKxZxfbAg
 <br>
 Radical OS is a Terminal Interface Operating System With the following features:<br>
 1.Virtual File System<br>
-2.Mex Runtime<br>
-3.Graphics Lib<br>
-4.Image Viewer<br>
+2.Binary Runtime<br>
+3.Own stdlib <br>
+4.Ramdisk<br>
 5.Memory Manager<br>
+6.Scheduler <br>
+7.Shell script runner<br>
