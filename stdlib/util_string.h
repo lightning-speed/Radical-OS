@@ -21,18 +21,25 @@ void copy(char to[], char from[], int till)
 		to[i] = from[i];
 	}
 }
-char *toString(int val)
+void toString(int val, char out[])
 {
 	if (val == 0)
-		return (char *)"0";
-	char *out;
-	int base = 10;
-	char *buf;
-	int i = 30;
-	for (; val && i; --i, val /= base)
-		buf[i] = "0123456789abcdef"[val % base];
-	out = &buf[i + 1];
-	return out;
+	{
+		out[0] = '0';
+		return;
+	}
+	char temp[32] = {0};
+	int p = 0;
+	for (int i = 0; val != 0; i++)
+	{
+		temp[i] = '0' + val % 10;
+		val /= 10;
+		p = i;
+	}
+	for (int i = p; i > -1; i--)
+	{
+		out[p - i] = temp[i];
+	}
 }
 int max(int a, int b)
 {

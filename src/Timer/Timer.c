@@ -5,7 +5,7 @@
 #include <System/System.h>
 #include <Timer/Scheduler.h>
 double TimeSinceBoot = 0;
-const long long BaseFrequency = 1193182;
+const long long BaseFrequency = 1193182 / 7;
 
 int Divisor = 65535;
 
@@ -25,9 +25,7 @@ double div(double a, double b)
 }
 void Sleep(long long milliseconds)
 {
-	if (milliseconds == 0)
-		milliseconds = 1;
-	Sleepd((double)div(milliseconds, 1000));
+	Sleepd((double)div(milliseconds * 10, 1000));
 }
 
 void SetDivisor(int divisor)

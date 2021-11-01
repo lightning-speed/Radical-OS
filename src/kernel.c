@@ -14,6 +14,10 @@
 #include <System/sys_call.h>
 #include <Timer/Scheduler.h>
 void sys_call(void);
+void ap()
+{
+	printW("pa");
+}
 void init_pic(void)
 {
 	outportb(0x20, 0x11);

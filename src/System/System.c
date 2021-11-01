@@ -9,6 +9,7 @@
 #include <System/BinaryRuntime.h>
 #include <Timer/Timer.h>
 #include <System/MemoryManager.h>
+#include <Timer/Scheduler.h>
 const int io_address = 0xA00000;
 void system(char *line);
 int get_address();
@@ -97,6 +98,11 @@ void system(char *line)
 		printW(toString(getMinutes()));
 		printC(':');
 		printW(toString(getSeconds()));
+	}
+	else if (equalS("mk", line, 2))
+	{
+		if (length(substring(line, 3, 38)) > 0)
+			create_file(substring(line, 3, 38), "", 0);
 	}
 	else if (equalS("read", line, 4))
 	{
@@ -223,22 +229,13 @@ void system_handle(char type, char arg1, char arg2, char arg3)
 		memr[1] = fis / 100;
 		memr[2] = fis % 100;
 	}
-	else if (type == 13)
-	{
-		char *name = (char *)io_address;
-		char *text = name + 32;
-		int len = ((int *)0x0)[0];
-		write_file(name, text, len);
-	}
-	else if (type == 14)
-	{
-		create_file((char *)io_address, "", 0);
-	}
 	//Get time from_boot
 	else if (type == 20)
 	{
 		int *mem = (int *)0x0;
 		mem[0] = (int)Sleep;
+		mem[1] = (int)create_task;
+		mem[2] = (int)dispose_task;
 	}
 	else if (type == 45)
 	{
