@@ -252,4 +252,18 @@ void system_handle(char type, char arg1, char arg2, char arg3)
 		mem[2] = (int)read_file;
 		mem[3] = (int)get_file_size;
 	}
+	else if (type == 41)
+	{
+		int *mem = (int *)0x0;
+		mem[1] = (int)does_file_exists;
+		mem[2] = (int)write_file;
+		mem[3] = (int)system;
+	}
+	else if (type == 42)
+	{
+		int *mem = (int *)0x0;
+		mem[1] = (int)create_file;
+		mem[2] = (int)readChar;
+		mem[3] = (int)system;
+	}
 }

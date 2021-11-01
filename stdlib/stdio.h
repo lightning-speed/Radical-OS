@@ -13,11 +13,11 @@ void printChar(char in)
 }
 char readChar()
 {
-	mem[81] = 0;
-	while (mem[81] == 0)
-	{
-	}
-	return mem[81];
+	setAll(42, 0, 0, 0);
+	asm("int $110");
+	char (*func)() = (void *)((int *)0x0)[2];
+	char n[0];
+	return func();
 }
 void changeColor(char color)
 {

@@ -2,10 +2,9 @@
 #include <FS/vfs.h>
 #include <System/MemoryManager.h>
 int bm;
-char *binary_mem;
+char *binary_mem = (char *)0xAAAFFF;
 void binary_runtime_init()
 {
-	binary_mem = malloc(1024 * 1024 * 10);
 	bm = (int)binary_mem;
 }
 void load_binary(char *binary, int till)
