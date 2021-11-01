@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <exec.h>
 #include <util_string.h>
+#include <time.h>
 void start_program(char **args, int offset)
 {
 	int echo = 1;
