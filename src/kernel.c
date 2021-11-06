@@ -96,7 +96,7 @@ void start_everything()
 	init_fs();
 	print("  [ Done ]\n", 0x0C);
 	print("Loading Ram Disk...         ", 0x0f);
-	load_ramdisk();
+	init_ramdisk();
 	print("  [ Done ]\n", 0x0D);
 	print("Creating Files...           ", 0x0f);
 	create_file_from_ramdisk();
@@ -104,5 +104,5 @@ void start_everything()
 	setup_call_handler();
 	binary_runtime_init();
 	run_binary_file("shell.bin");
-	printW("\nNo more execution left. System Halted!");
+	print("\nNo more execution left. System Halted!", 0x0f);
 }

@@ -1,4 +1,4 @@
 #pragma once
-void load_ramdisk();
-long long ramdisk_start;
-long long ramdisk_end;
+void init_ramdisk();
+int ramdisk_start;
+int ramdisk_end;
