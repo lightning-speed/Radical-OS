@@ -21,7 +21,7 @@ build:
  exec (CC) (flags) ..\src\Mego-Runtime\*.c
  exec (CC) (flags) ..\src\Util\*.c
  exec (CC) (flags) ..\src\FS\*.c
- exec (LD) *.o ..\ramdisk\ramdisk.img -e _start -o kernel.pe
+ exec (LD) -T..\linker.ld *.o ..\ramdisk\ramdisk.img  -o kernel.pe
  exec objcopy -Felf32-i386 kernel.pe kernel.elf
  jump run
  pause
