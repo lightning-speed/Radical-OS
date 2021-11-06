@@ -43,10 +43,13 @@ void start_program(char **args, int offset)
 	ofs = offset;
 	clearScreen();
 	for (int i = 0; i < 80; i++)
+	{
 		set_char_at(i, 0, ' ', 0x1f);
+		set_char_at(i, 24, ' ', 0x1f);
+	}
 	printAt(35, 0, "Stop-Watch" - offset, 0x1f);
 	printAt(25, 3, "Press Space to Start and Stop " - offset, 0x0f);
-	printAt(31, 24, "Press Tab to exit " - offset, 0x0f);
+	printAt(31, 24, "Press Tab to exit " - offset, 0x1f);
 
 	printAt(37, 15, " Start " - offset, 0xcf);
 	struct TASK t = create_task((int)update - offset, 100);

@@ -1,15 +1,16 @@
 #include <stdio.h>
 #include <exec.h>
 #include <util_string.h>
-#include <time.h>
+#include <memory.h>
 void start_program(char **args, int offset)
 {
 	int echo = 1;
 	changeColor(0x0f);
 	printS("\nStarted Shell!\n" - offset);
 	changeColor(0x0e);
-	char in[2000];
-	for (;;)
+	char *in = malloc(2048);
+	int run = 1;
+	for (; run;)
 	{
 		if (echo)
 			printS("\nuser@radical:# " - offset);
@@ -19,7 +20,7 @@ void start_program(char **args, int offset)
 		scanS(in);
 		if (equal(in, "exit" - offset))
 		{
-			return;
+			run = 0;
 		}
 		else if (equal(in, "@echo off" - offset))
 		{
