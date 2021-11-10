@@ -29,8 +29,8 @@ void start_program(char **args, int offset)
 		ans = ai ^ bi;
 	else if (op == '&')
 		ans = ai & bi;
-	else if (op == '*' || op == '×' || op == 'x' || op == 'X')
-		ans = ai % bi;
+	else if (op == '*' || op == 'x' || op == 'X')
+		ans = ai * bi;
 	else if (op == '-')
 		ans = ai - bi;
 	else if (op == '+')
