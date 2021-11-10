@@ -23,35 +23,24 @@ void start_program(char **args, int offset)
 				t = 1;
 	}
 	int ans = 0;
-	switch (op)
+	if (op == '%')
+		ans = ai % bi;
+	else if (op == '^')
+		ans = ai ^ bi;
+	else if (op == '&')
+		ans = ai & bi;
+	else if (op == '*' || op == '×' || op == 'x' || op == 'X')
+		ans = ai % bi;
+	else if (op == '-')
+		ans = ai - bi;
+	else if (op == '+')
+		ans = ai + bi;
+	else if (op == '/')
 	{
-		case '%':
-			ans = ai % bi;
-			break;
-		case '^':
-			ans = ai ^ bi;
-			break;
-		case '&':
-			ans = ai & bi;
-			break;
-		case '*':
-		case '×':
-		case 'x':
-		case 'X':
-			ans = ai * bi;
-			break;
-		case '-':
-			ans = ai - bi;
-			break;
-		case '+':
-			ans = ai + bi;
-			break;
-		case '/':
-		case '÷':
-			if (bi != 0) ans = ai / bi;
-			break;
-		default: return;
+		if (bi) ans = ai / bi;
+		else ans = 0;
 	}
+	else ans = 0;
 	printChar('\n');
 	printS("Ans: " - offset);
 	char temp[30];
